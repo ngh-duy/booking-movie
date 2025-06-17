@@ -1,6 +1,5 @@
 import {
 	ClockIcon,
-	FilmIcon,
 	HomeModernIcon,
 	MagnifyingGlassIcon,
 	TicketIcon,
@@ -149,14 +148,14 @@ const Navbar = () => {
 	}
 
 	return (
-		<nav className="flex flex-col items-center justify-between gap-3 bg-gray-900 px-6 py-4 shadow-xl lg:flex-row lg:justify-start sm:px-10">
+		<nav className="flex flex-col items-center justify-between gap-3 bg-gradient-to-r from-purple-900 to-pink-800 px-6 py-4 shadow-xl lg:flex-row lg:justify-start sm:px-10">
 			<div className="flex w-full flex-row justify-between lg:w-fit">
 				<button className="flex flex-row items-center gap-3 transition-transform hover:scale-105" onClick={() => navigate('/')}>
-					<FilmIcon className="h-9 w-9 text-white" />
-					<h1 className="mr-2 text-2xl font-semibold text-white">Cinema</h1>
+					<TicketIcon className="h-9 w-9 text-white" />
+					<h1 className="mr-2 text-2xl font-semibold text-white">NOBITA</h1>
 				</button>
 				<button
-					className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:bg-gray-700 lg:hidden"
+					className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:bg-purple-700/50 lg:hidden"
 					onClick={() => toggleMenu()}
 				>
 					<Bars3Icon className="h-7 w-7 text-white" />
