@@ -102,22 +102,26 @@ const TheaterListsByMovie = ({ movies, selectedMovieIndex, setSelectedMovieIndex
 	return (
 		<>
 			<CinemaLists {...props} />
-			<div className="mx-4 h-fit rounded-md bg-gradient-to-br from-indigo-200 to-blue-100 text-gray-900 drop-shadow-md sm:mx-8">
-				<div className="flex flex-col gap-6 p-4 sm:p-6">
+			<div className="mx-4 h-fit rounded-2xl bg-gradient-to-br from-purple-200 to-pink-100 text-gray-900 shadow-xl sm:mx-8">
+				<div className="flex flex-col gap-8 p-6 sm:p-8">
 					<DateSelector selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
-					<div className="flex flex-col gap-4 rounded-md bg-gradient-to-br from-indigo-100 to-white py-4">
-						<div className="flex items-center">
-							<img src={movies[selectedMovieIndex].img} className="w-32 px-4 drop-shadow-md" />
-							<div>
-								<h4 className="text-2xl font-semibold">{movies[selectedMovieIndex].name}</h4>
-								<p className="text-md font-medium">
-									length : {movies[selectedMovieIndex].length || '-'} min
+					<div className="flex flex-col gap-6 rounded-xl bg-gradient-to-br from-purple-100 to-white p-6 shadow-lg">
+						<div className="flex items-center gap-6">
+							<img 
+								src={movies[selectedMovieIndex].img} 
+								className="w-36 rounded-lg shadow-md transition-all duration-300 hover:scale-105" 
+								alt={movies[selectedMovieIndex].name}
+							/>
+							<div className="space-y-2">
+								<h4 className="text-2xl font-bold tracking-tight text-gray-800">{movies[selectedMovieIndex].name}</h4>
+								<p className="text-lg font-medium text-gray-600">
+									Thời lượng : {movies[selectedMovieIndex].length || '-'} phút
 								</p>
 							</div>
 						</div>
 					</div>
 					{isFetchingTheatersDone ? (
-						<div className="flex flex-col">
+						<div className="flex flex-col gap-6">
 							{filteredTheaters.map((theater, index) => {
 								return (
 									<div
@@ -126,13 +130,13 @@ const TheaterListsByMovie = ({ movies, selectedMovieIndex, setSelectedMovieIndex
 											index !== 0 &&
 											filteredTheaters[index - 1]?.cinema.name !==
 												filteredTheaters[index].cinema.name &&
-											'mt-6'
+											'mt-8'
 										}`}
 									>
 										{filteredTheaters[index - 1]?.cinema.name !==
 											filteredTheaters[index].cinema.name && (
-											<div className="rounded-t-md bg-gradient-to-br from-indigo-800 to-blue-700 px-2 py-1.5 text-center text-2xl font-semibold text-white sm:py-2">
-												<h2>{theater.cinema.name}</h2>
+											<div className="rounded-t-xl bg-gradient-to-br from-purple-900 to-pink-800 px-4 py-3 text-center text-2xl font-semibold text-white shadow-lg">
+												<h2 className="tracking-tight">{theater.cinema.name}</h2>
 											</div>
 										)}
 										<TheaterShort
@@ -150,8 +154,8 @@ const TheaterListsByMovie = ({ movies, selectedMovieIndex, setSelectedMovieIndex
 								)
 							})}
 							{filteredTheaters.length === 0 && (
-								<p className="text-center text-xl font-semibold text-gray-700">
-									There are no showtimes available
+								<p className="text-center text-xl font-medium text-gray-600">
+									Không có suất chiếu nào
 								</p>
 							)}
 						</div>

@@ -14,7 +14,7 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 	const [isUnreleasingShowtime, setIsUnreleasingShowtime] = useState(false)
 
 	const handleDelete = () => {
-		const confirmed = window.confirm(`Do you want to delete this showtime, including its tickets?`)
+		const confirmed = window.confirm(`Bạn có muốn xóa suất chiếu này, bao gồm cả vé đã đặt?`)
 		if (confirmed) {
 			onDeleteShowtime()
 		}
@@ -28,16 +28,15 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 					Authorization: `Bearer ${auth.token}`
 				}
 			})
-			// console.log(response.data)
 			navigate('/cinema')
-			toast.success('Delete showtime successful!', {
+			toast.success('Xóa suất chiếu thành công!', {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
 			})
 		} catch (error) {
 			console.error(error)
-			toast.error('Error', {
+			toast.error('Lỗi', {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
@@ -48,7 +47,7 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 	}
 
 	const handleReleaseShowtime = () => {
-		const confirmed = window.confirm(`Do you want to release this showtime?`)
+		const confirmed = window.confirm(`Bạn có muốn phát hành suất chiếu này?`)
 		if (confirmed) {
 			onReleaseShowtime()
 		}
@@ -67,14 +66,14 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 				}
 			)
 			await fetchShowtime()
-			toast.success(`Release showtime successful!`, {
+			toast.success(`Phát hành suất chiếu thành công!`, {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
 			})
 		} catch (error) {
 			console.error(error)
-			toast.error('Error', {
+			toast.error('Lỗi', {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
@@ -85,7 +84,7 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 	}
 
 	const handleUnreleasedShowtime = () => {
-		const confirmed = window.confirm(`Do you want to unreleased this showtime?`)
+		const confirmed = window.confirm(`Bạn có muốn hủy phát hành suất chiếu này?`)
 		if (confirmed) {
 			onUnreleasedShowtime()
 		}
@@ -104,14 +103,14 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 				}
 			)
 			await fetchShowtime()
-			toast.success(`Unreleased showtime successful!`, {
+			toast.success(`Hủy phát hành suất chiếu thành công!`, {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
 			})
 		} catch (error) {
 			console.error(error)
-			toast.error('Error', {
+			toast.error('Lỗi', {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
@@ -124,19 +123,19 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 	return (
 		<>
 			{showDeleteBtn && auth.role === 'admin' && (
-				<div className="mb-4 flex justify-end gap-2">
+				<div className="mb-6 flex justify-end gap-3">
 					{!showtime.isRelease && (
 						<button
-							title="Edit cinema name"
-							className="flex w-fit items-center gap-1 rounded-md bg-gradient-to-r from-indigo-600 to-blue-500  py-1 pl-2 pr-1.5 text-sm font-medium text-white hover:from-indigo-500 hover:to-blue-400 disabled:from-slate-500 disabled:to-slate-400"
+							title="Phát hành suất chiếu"
+							className="flex w-fit transform items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400"
 							onClick={() => handleReleaseShowtime(true)}
 							disabled={isReleasingShowtime}
 						>
 							{isReleasingShowtime ? (
-								'Processing...'
+								'Đang xử lý...'
 							) : (
 								<>
-									RELEASE
+									PHÁT HÀNH
 									<EyeIcon className="h-5 w-5" />
 								</>
 							)}
@@ -144,31 +143,31 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 					)}
 					{showtime.isRelease && (
 						<button
-							title="Edit cinema name"
-							className="flex w-fit items-center gap-1 rounded-md bg-gradient-to-r from-indigo-600 to-blue-500  py-1 pl-2 pr-1.5 text-sm font-medium text-white hover:from-indigo-500 hover:to-blue-400 disabled:from-slate-500 disabled:to-slate-400"
+							title="Hủy phát hành suất chiếu"
+							className="flex w-fit transform items-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400"
 							onClick={() => handleUnreleasedShowtime(true)}
 							disabled={isUnreleasingShowtime}
 						>
 							{isUnreleasingShowtime ? (
-								'Processing...'
+								'Đang xử lý...'
 							) : (
 								<>
-									UNRELEASE
+									HỦY PHÁT HÀNH
 									<EyeSlashIcon className="h-5 w-5" />
 								</>
 							)}
 						</button>
 					)}
 					<button
-						className="flex w-fit items-center gap-1 rounded-md bg-gradient-to-r from-red-700 to-rose-600 py-1 pl-2 pr-1.5 text-sm font-medium text-white hover:from-red-600 hover:to-rose-600 disabled:from-slate-500 disabled:to-slate-400"
+						className="flex w-fit transform items-center gap-2 rounded-xl bg-gradient-to-r from-red-600 to-rose-500 px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-red-500 hover:to-rose-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400"
 						onClick={() => handleDelete()}
 						disabled={isDeletingShowtimes}
 					>
 						{isDeletingShowtimes ? (
-							'Processing...'
+							'Đang xử lý...'
 						) : (
 							<>
-								DELETE
+								XÓA
 								<TrashIcon className="h-5 w-5" />
 							</>
 						)}
@@ -176,44 +175,44 @@ const ShowtimeDetails = ({ showDeleteBtn, showtime, fetchShowtime }) => {
 				</div>
 			)}
 			<div className="flex justify-between">
-				<div className="flex flex-col justify-center rounded-tl-lg bg-gradient-to-br from-gray-800 to-gray-700 px-4 py-0.5 text-center font-bold text-white sm:px-8">
-					<p className="text-sm">Theater</p>
-					<p className="text-3xl">{showtime?.theater?.number}</p>
+				<div className="flex flex-col justify-center rounded-tl-2xl bg-gradient-to-br from-gray-800 to-gray-700 px-6 py-2 text-center font-bold text-white shadow-lg sm:px-10">
+					<p className="text-sm tracking-wide">Phòng Chiếu</p>
+					<p className="text-3xl tracking-tight">{showtime?.theater?.number}</p>
 				</div>
-				<div className="flex w-fit grow items-center justify-center rounded-tr-lg bg-gradient-to-br from-indigo-800 to-blue-700 px-4 py-0.5 text-center text-xl font-bold text-white sm:text-3xl">
-					<p className="mx-auto">{showtime?.theater?.cinema.name}</p>
-					{!showtime?.isRelease && <EyeSlashIcon className="h-8 w-8" title="Unreleased showtime" />}
+				<div className="flex w-fit grow items-center justify-center rounded-tr-2xl bg-gradient-to-br from-purple-800 to-pink-700 px-6 py-2 text-center text-xl font-bold text-white shadow-lg sm:text-3xl">
+					<p className="mx-auto tracking-tight">{showtime?.theater?.cinema.name}</p>
+					{!showtime?.isRelease && <EyeSlashIcon className="h-8 w-8" title="Suất chiếu chưa phát hành" />}
 				</div>
 			</div>
 			<div className="flex flex-col md:flex-row">
-				<div className="flex grow flex-col gap-4 bg-gradient-to-br from-indigo-100 to-white py-2 drop-shadow-lg sm:py-4">
+				<div className="flex grow flex-col gap-4 bg-gradient-to-br from-purple-50 to-white py-4 shadow-xl sm:py-6">
 					<div className="flex items-center">
-						<img src={showtime?.movie?.img} className="w-32 px-4 drop-shadow-md" />
+						<img src={showtime?.movie?.img} className="w-36 transform px-4 shadow-lg transition-all duration-300 hover:scale-105" />
 						<div className="flex flex-col">
-							<h4 className="mr-4 text-xl font-semibold sm:text-2xl md:text-3xl">
+							<h4 className="mr-4 text-xl font-semibold tracking-tight text-gray-800 sm:text-2xl md:text-3xl">
 								{showtime?.movie?.name}
 							</h4>
 							{showtime?.movie && (
-								<p className="mr-4 font-medium sm:text-lg">
-									length : {showtime?.movie?.length || '-'} min
+								<p className="mr-4 font-medium text-gray-600 sm:text-lg">
+									Thời lượng: {showtime?.movie?.length || '-'} phút
 								</p>
 							)}
 						</div>
 					</div>
 				</div>
 				<div className="flex flex-col">
-					<div className="flex h-full min-w-max flex-col items-center justify-center gap-y-1 bg-gradient-to-br from-indigo-100 to-white py-2 text-center text-xl font-semibold drop-shadow-lg sm:py-4 sm:text-2xl md:items-start">
-						<p className="mx-4 text-lg leading-4 ">
+					<div className="flex h-full min-w-max flex-col items-center justify-center gap-y-2 bg-gradient-to-br from-purple-50 to-white py-4 text-center text-xl font-semibold shadow-xl sm:py-6 sm:text-2xl md:items-start">
+						<p className="mx-4 text-lg leading-4 text-gray-700">
 							{showtime?.showtime &&
 								`${new Date(showtime?.showtime).toLocaleString('default', { weekday: 'long' })}`}
 						</p>
-						<p className="mx-4 ">
+						<p className="mx-4 text-gray-800">
 							{showtime?.showtime &&
 								`${new Date(showtime?.showtime).getDate()}
                					 ${new Date(showtime?.showtime).toLocaleString('default', { month: 'long' })}
                 				${new Date(showtime?.showtime).getFullYear()}`}
 						</p>
-						<p className="mx-4 bg-gradient-to-r from-indigo-800 to-blue-700 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
+						<p className="mx-4 bg-gradient-to-r from-purple-800 to-pink-700 bg-clip-text text-4xl font-bold text-transparent sm:text-5xl">
 							{showtime?.showtime &&
 								`${new Date(showtime?.showtime).getHours().toString().padStart(2, '0')} : ${new Date(
 									showtime?.showtime

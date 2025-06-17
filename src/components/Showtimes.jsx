@@ -38,7 +38,7 @@ const Showtimes = ({ showtimes, movies, selectedDate, filterMovie, showMovieDeta
 	}
 
 	if (Object.keys(sortedShowtimes).length === 0) {
-		return <p className="text-center">There are no showtimes available</p>
+		return <p className="text-center text-lg font-medium text-gray-600">Không có suất chiếu nào</p>
 	}
 	return (
 		<>
@@ -47,15 +47,24 @@ const Showtimes = ({ showtimes, movies, selectedDate, filterMovie, showMovieDeta
 					sortedShowtimes &&
 					sortedShowtimes[movie._id] && (
 						<div key={index} className="flex items-center">
-							{showMovieDetail && <img src={movie.img} className="w-32 px-4 drop-shadow-md" />}
-							<div className="mr-4 flex flex-col gap-2 pb-4 pt-2">
+							{showMovieDetail && (
+								<img
+									src={movie.img}
+									className="w-36 transform px-4 shadow-lg transition-all duration-300 hover:scale-105"
+								/>
+							)}
+							<div className="mr-4 flex flex-col gap-3 pb-6 pt-3">
 								{showMovieDetail && (
 									<div>
-										<h4 className="text-2xl font-semibold">{movie.name}</h4>
-										<p className="text-md font-medium">length : {movie.length || '-'} min</p>
+										<h4 className="text-2xl font-semibold tracking-tight text-gray-800">
+											{movie.name}
+										</h4>
+										<p className="text-md font-medium text-gray-600">
+											Thời lượng: {movie.length || '-'} phút
+										</p>
 									</div>
 								)}
-								<div className="flex flex-wrap items-center gap-2 pt-1">
+								<div className="flex flex-wrap items-center gap-3 pt-2">
 									{sortedShowtimes[movie._id]?.map((showtime, index) => {
 										return (
 											<button
@@ -80,7 +89,7 @@ const Showtimes = ({ showtimes, movies, selectedDate, filterMovie, showMovieDeta
 														`}
 												className={
 													isPast(new Date(showtime.showtime))
-														? `flex items-center gap-1 rounded-md bg-gradient-to-br from-gray-100 to-white px-2 py-1 text-lg text-gray-900 ring-1 ring-inset ring-gray-800 drop-shadow-sm ${
+														? `flex transform items-center gap-2 rounded-xl bg-gradient-to-br from-gray-100 to-white px-4 py-2 text-lg font-medium text-gray-900 shadow-md transition-all duration-300 hover:scale-105 active:scale-95 ${
 																auth.role !== 'admin' && 'cursor-not-allowed'
 														  } ${
 																auth.role === 'admin' &&
@@ -92,8 +101,8 @@ const Showtimes = ({ showtimes, movies, selectedDate, filterMovie, showMovieDeta
 																	(s) => new Date(s.showtime) > new Date()
 																).showtime
 														  ).getTime()
-														? 'flex items-center gap-1 rounded-md bg-gradient-to-br from-indigo-600 to-blue-500 px-2 py-1 text-lg text-white drop-shadow-sm hover:from-indigo-500 hover:to-blue-400'
-														: 'flex items-center gap-1 rounded-md bg-gradient-to-br from-gray-600 to-gray-500 px-2 py-1 text-lg text-white drop-shadow-sm hover:from-gray-500 hover:to-gray-400'
+														? 'flex transform items-center gap-2 rounded-xl bg-gradient-to-br from-purple-600 to-pink-500 px-4 py-2 text-lg font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95'
+														: 'flex transform items-center gap-2 rounded-xl bg-gradient-to-br from-gray-600 to-gray-500 px-4 py-2 text-lg font-medium text-white shadow-md transition-all duration-300 hover:scale-105 hover:from-gray-500 hover:to-gray-400 active:scale-95'
 												}
 												onClick={() => {
 													if (!isPast(new Date(showtime.showtime)) || auth.role === 'admin')
@@ -101,7 +110,10 @@ const Showtimes = ({ showtimes, movies, selectedDate, filterMovie, showMovieDeta
 												}}
 											>
 												{!showtime.isRelease && (
-													<EyeSlashIcon className="h-6 w-6" title="Unreleased showtime" />
+													<EyeSlashIcon
+														className="h-6 w-6"
+														title="Suất chiếu chưa phát hành"
+													/>
 												)}
 												{`${new Date(showtime.showtime)
 													.getHours()

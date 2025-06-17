@@ -108,88 +108,92 @@ const Movie = () => {
 	const min = sumMin % 60
 
 	return (
-		<div className="flex min-h-screen flex-col gap-4 bg-gradient-to-br from-indigo-900 to-blue-500 pb-8 text-gray-900 sm:gap-8">
+		<div className="flex min-h-screen flex-col gap-6 bg-gradient-to-br from-purple-900 to-pink-800 pb-12 text-gray-900 sm:gap-10">
 			<Navbar />
-			<div className="mx-4 flex h-fit flex-col gap-4 rounded-md bg-gradient-to-br from-indigo-200 to-blue-100 p-4 drop-shadow-xl sm:mx-8 sm:p-6">
-				<h2 className="text-3xl font-bold text-gray-900">Movie Lists</h2>
+			<div className="mx-4 flex h-fit flex-col gap-6 rounded-2xl bg-gradient-to-br from-purple-200 to-pink-100 p-6 shadow-xl sm:mx-8 sm:p-8">
+				<h2 className="text-3xl font-bold tracking-tight text-gray-800">Danh sách phim</h2>
 				<form
 					onSubmit={handleSubmit(onAddMovie)}
-					className="flex flex-col items-stretch justify-end gap-x-4 gap-y-2 rounded-md bg-gradient-to-br from-indigo-100 to-white p-4 drop-shadow-md lg:flex-row"
+					className="flex flex-col items-stretch justify-end gap-x-6 gap-y-4 rounded-xl bg-gradient-to-br from-purple-100 to-white p-6 shadow-lg lg:flex-row"
 				>
-					<div className="flex w-full grow flex-col flex-wrap justify-start gap-4 lg:w-auto">
-						<h3 className="text-xl font-bold">Add Movie</h3>
-						<div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
-							<label className="text-lg font-semibold leading-5">Name :</label>
+					<div className="flex w-full grow flex-col flex-wrap justify-start gap-6 lg:w-auto">
+						<h3 className="text-2xl font-bold tracking-tight text-gray-800">Thêm phim mới</h3>
+						<div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+							<label className="text-lg font-semibold leading-5 text-gray-800">Tên phim :</label>
 							<input
 								type="text"
 								required
-								className="w-full flex-grow rounded px-3 py-1 font-semibold drop-shadow-sm sm:w-auto"
+								className="w-full flex-grow rounded-lg border-2 border-gray-200 px-4 py-2 text-lg font-medium shadow-sm transition-all duration-300 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 sm:w-auto"
 								{...register('name', {
 									required: true
 								})}
 							/>
 						</div>
-						<div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
-							<label className="text-lg font-semibold leading-5">Poster URL :</label>
+						<div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+							<label className="text-lg font-semibold leading-5 text-gray-800">URL Poster :</label>
 							<input
 								type="text"
 								required
-								className="w-full flex-grow rounded px-3 py-1 font-semibold drop-shadow-sm sm:w-auto"
+								className="w-full flex-grow rounded-lg border-2 border-gray-200 px-4 py-2 text-lg font-medium shadow-sm transition-all duration-300 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 sm:w-auto"
 								{...register('img', {
 									required: true
 								})}
 							/>
 						</div>
-						<div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
-							<label className="text-lg font-semibold leading-5">Length (hr.):</label>
+						<div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+							<label className="text-lg font-semibold leading-5 text-gray-800">Thời lượng (giờ) :</label>
 							<input
 								type="number"
 								min="0"
 								max="20"
 								maxLength="2"
-								className="w-full flex-grow rounded px-3 py-1 font-semibold drop-shadow-sm sm:w-auto"
+								className="w-full flex-grow rounded-lg border-2 border-gray-200 px-4 py-2 text-lg font-medium shadow-sm transition-all duration-300 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 sm:w-auto"
 								{...register('lengthHr')}
 							/>
 						</div>
 						<div>
-							<div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center">
-								<label className="text-lg font-semibold leading-5">Length (min.):</label>
+							<div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+								<label className="text-lg font-semibold leading-5 text-gray-800">Thời lượng (phút) :</label>
 								<input
 									type="number"
 									min="0"
 									max="2000"
 									maxLength="4"
 									required
-									className="w-full flex-grow rounded px-3 py-1 font-semibold drop-shadow-sm sm:w-auto"
+									className="w-full flex-grow rounded-lg border-2 border-gray-200 px-4 py-2 text-lg font-medium shadow-sm transition-all duration-300 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50 sm:w-auto"
 									{...register('lengthMin', {
 										required: true
 									})}
 								/>
 							</div>
-							<div className="pt-1 text-right">{`${hr}h ${min}m / ${sumMin}m `}</div>
+							<div className="pt-2 text-right text-lg font-medium text-gray-600">{`${hr}h ${min}m / ${sumMin}m `}</div>
 						</div>
 					</div>
-					<div className="flex w-full flex-col gap-4 lg:w-auto lg:flex-row">
+					<div className="flex w-full flex-col gap-6 lg:w-auto lg:flex-row">
 						{watch('img') && (
-							<img src={watch('img')} className="h-48 rounded-md object-contain drop-shadow-md lg:h-64" />
+							<img 
+								src={watch('img')} 
+								className="h-52 rounded-xl object-contain shadow-md transition-all duration-300 hover:scale-105 lg:h-72" 
+								alt="Movie poster preview"
+							/>
 						)}
 						<button
-							className="w-full min-w-fit items-center rounded-md bg-gradient-to-br from-indigo-600 to-blue-500 px-2 py-1 text-center font-medium text-white drop-shadow-md hover:from-indigo-500 hover:to-blue-500 disabled:from-slate-500 disabled:to-slate-400 lg:w-24 xl:w-32 xl:text-xl"
+							className="w-full min-w-fit items-center rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 px-6 py-3 text-center text-lg font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400 lg:w-32 xl:w-40"
 							type="submit"
 							disabled={isAddingMovie}
 						>
-							{isAddingMovie ? 'Processing...' : 'ADD +'}
+							{isAddingMovie ? 'Đang xử lý...' : 'THÊM +'}
 						</button>
 					</div>
 				</form>
-				<div className="relative drop-shadow-sm">
-					<div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-						<MagnifyingGlassIcon className="h-5 w-5 stroke-2 text-gray-500" />
+				<div className="relative">
+					<div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
+						<MagnifyingGlassIcon className="h-6 w-6 stroke-2 text-purple-600" />
 					</div>
 					<input
 						type="search"
-						className="block w-full rounded-lg border border-gray-300 p-2 pl-10 text-gray-900"
-						placeholder="Search movie"
+						className="block w-full rounded-lg border-2 border-gray-200 p-3 pl-12 text-lg text-gray-800 shadow-sm transition-all duration-300 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-opacity-50"
+						placeholder="Tìm kiếm phim"
 						{...register('search')}
 					/>
 				</div>

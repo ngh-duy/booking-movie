@@ -6,27 +6,27 @@ const Seat = ({ seat, setSelectedSeats, selectable, isAvailable }) => {
 	return !isAvailable ? (
 		<button
 			title={`${seat.row}${seat.number}`}
-			className="flex h-8 w-8 cursor-not-allowed items-center justify-center"
+			className="flex h-10 w-10 cursor-not-allowed items-center justify-center"
 		>
-			<div className="h-6 w-6 rounded bg-gray-500 drop-shadow-md"></div>
+			<div className="h-8 w-8 transform rounded-lg bg-gray-500 shadow-md transition-all duration-300 hover:scale-110"></div>
 		</button>
 	) : isSelected ? (
 		<button
 			title={`${seat.row}${seat.number}`}
-			className="flex h-8 w-8 items-center justify-center"
+			className="flex h-10 w-10 items-center justify-center"
 			onClick={() => {
 				setIsSelected(false)
 				setSelectedSeats((prev) => prev.filter((e) => e !== `${seat.row}${seat.number}`))
 			}}
 		>
-			<div className="flex h-6 w-6 items-center justify-center rounded bg-blue-500 drop-shadow-md">
+			<div className="flex h-8 w-8 transform items-center justify-center rounded-lg bg-gradient-to-br from-purple-600 to-pink-500 shadow-lg transition-all duration-300 hover:scale-110 active:scale-95">
 				<CheckIcon className="h-5 w-5 stroke-[3] text-white" />
 			</div>
 		</button>
 	) : (
 		<button
 			title={`${seat.row}${seat.number}`}
-			className={`flex h-8 w-8 items-center justify-center ${!selectable && 'cursor-not-allowed'}`}
+			className={`flex h-10 w-10 items-center justify-center ${!selectable && 'cursor-not-allowed'}`}
 			onClick={() => {
 				if (selectable) {
 					setIsSelected(true)
@@ -34,7 +34,7 @@ const Seat = ({ seat, setSelectedSeats, selectable, isAvailable }) => {
 				}
 			}}
 		>
-			<div className="h-6 w-6 rounded bg-white drop-shadow-md"></div>
+			<div className="h-8 w-8 transform rounded-lg bg-white shadow-md transition-all duration-300 hover:scale-110 hover:bg-gray-50 active:scale-95"></div>
 		</button>
 	)
 }

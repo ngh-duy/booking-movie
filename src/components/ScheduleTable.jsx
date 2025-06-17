@@ -14,7 +14,6 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 		showtime = new Date(showtime)
 		const hour = showtime.getHours()
 		const min = showtime.getMinutes()
-		console.log(hour, min, Math.round((60 * hour + min) / 5))
 		return Math.round((60 * hour + min) / 5)
 	}
 
@@ -60,7 +59,7 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 	function rowToNumber(column) {
 		let result = 0
 		for (let i = 0; i < column.length; i++) {
-			const charCode = column.charCodeAt(i) - 64 // Convert character to ASCII and adjust to 1-based index
+			const charCode = column.charCodeAt(i) - 64
 			result = result * 26 + charCode
 		}
 		return result
@@ -81,7 +80,7 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 			<div
 				className={`grid min-h-[50vh] max-h-screen overflow-x-auto grid-cols-${cinema.theaters?.length.toString()} grid-rows-${
 					gridRows + shiftEnd
-				} rounded-md bg-gradient-to-br from-indigo-100 to-white`}
+				} rounded-2xl bg-gradient-to-br from-purple-100 to-pink-50 shadow-xl`}
 				{...events}
 				ref={ref}
 			>
@@ -109,17 +108,17 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 										.padStart(2, '0')}
 												`}
 									key={index}
-									className={`flex flex-col items-center overflow-y-scroll row-span-${getRowSpan(
+									className={`flex transform flex-col items-center overflow-y-scroll row-span-${getRowSpan(
 										showtime.movie.length
 									)} row-start-${
 										getRowStart(showtime.showtime) - firstRowStart + shiftStart
-									} col-start-${theater.number} mx-1 rounded p-1 text-center drop-shadow-md ${
+									} col-start-${theater.number} mx-2 my-1 rounded-xl p-2 text-center shadow-md transition-all duration-300 ${
 										!isPast(new Date(showtime.showtime))
-											? 'bg-white hover:bg-gray-100'
-											: `bg-gray-200  ${
-													auth.role === 'admin' ? 'hover:bg-gray-300' : 'cursor-not-allowed'
+											? 'bg-white hover:scale-105 hover:bg-gray-50'
+											: `bg-gray-200 ${
+													auth.role === 'admin' ? 'hover:scale-105 hover:bg-gray-300' : 'cursor-not-allowed'
 											  }`
-									} ${!showtime.isRelease && 'ring-2 ring-inset ring-gray-800'}`}
+									} ${!showtime.isRelease && 'ring-2 ring-inset ring-purple-800'}`}
 									onClick={() => {
 										if (!isPast(new Date(showtime.showtime)) || auth.role === 'admin')
 											return navigate(`/showtime/${showtime._id}`)
@@ -127,12 +126,12 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 								>
 									{!showtime.isRelease && (
 										<EyeSlashIcon
-											className="mx-auto h-5 w-5 stroke-2"
-											title="Unreleased showtime"
+											className="mx-auto h-5 w-5 stroke-2 text-purple-800"
+											title="Suất chiếu chưa phát hành"
 										/>
 									)}
-									<p className="text-sm font-bold">{showtime.movie.name}</p>
-									<p className="text-sm leading-3">{`${new Date(showtime.showtime)
+									<p className="text-sm font-bold text-gray-800">{showtime.movie.name}</p>
+									<p className="text-sm leading-3 text-gray-600">{`${new Date(showtime.showtime)
 										.getHours()
 										.toString()
 										.padStart(2, '0')} : ${new Date(showtime.showtime)
@@ -156,20 +155,20 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 				})}
 
 				{showtimeCount === 0 && (
-					<div className="col-span-full row-start-3 flex items-center justify-center text-xl font-semibold text-gray-700">
-						There are no showtimes available
+					<div className="col-span-full row-start-3 flex items-center justify-center rounded-xl bg-white p-6 text-center text-xl font-semibold text-gray-600 shadow-lg">
+						Không có suất chiếu nào
 					</div>
 				)}
 
 				{cinema.theaters.map((theater, index) => (
 					<div
 						key={index}
-						className="sticky top-0 row-span-1 row-start-1 flex flex-col items-center justify-center bg-gradient-to-br from-gray-800 to-gray-700 py-1 text-white"
+						className="sticky top-0 row-span-1 row-start-1 flex flex-col items-center justify-center bg-gradient-to-br from-purple-800 to-pink-700 py-3 text-white shadow-lg"
 					>
-						<p className="text-2xl font-semibold leading-7">{index + 1}</p>
+						<p className="text-2xl font-bold tracking-tight">{index + 1}</p>
 						{auth.role === 'admin' && (
 							<>
-								<div className="flex gap-1 text-xs">
+								<div className="mt-1 flex gap-2 text-xs">
 									<p className="flex items-center gap-1">
 										<ArrowsUpDownIcon className="h-3 w-3" />
 										{theater.seatPlan.row === 'A'
@@ -183,12 +182,12 @@ const ScheduleTable = ({ cinema, selectedDate }) => {
 											: `1 - ${theater.seatPlan.column}`}
 									</p>
 								</div>
-								<p className="flex items-center gap-1 text-sm">
+								<p className="mt-1 flex items-center gap-1 text-sm">
 									<UserIcon className="h-4 w-4" />
 									{(rowToNumber(theater.seatPlan.row) * theater.seatPlan.column).toLocaleString(
 										'en-US'
 									)}{' '}
-									Seats
+									Ghế
 								</p>
 							</>
 						)}

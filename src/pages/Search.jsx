@@ -311,27 +311,27 @@ const Search = () => {
 	const navigate = useNavigate()
 
 	return (
-		<div className="flex min-h-screen flex-col gap-4 bg-gradient-to-br from-indigo-900 to-blue-500 pb-8 text-gray-900 sm:gap-8">
+		<div className="flex min-h-screen flex-col gap-6 bg-gradient-to-br from-purple-900 to-pink-800 pb-12 text-gray-900 sm:gap-10">
 			<Navbar />
-			<div className="mx-4 flex h-fit flex-col gap-2 rounded-lg bg-gradient-to-br from-indigo-200 to-blue-100 p-4 drop-shadow-xl sm:mx-8 sm:p-6">
-				<h2 className="text-3xl font-bold text-gray-900">Search Showtimes</h2>
-				<div className="flex flex-col gap-2 rounded-md bg-gradient-to-br from-indigo-100 to-white p-4 transition-all duration-500 ease-in-out">
+			<div className="mx-4 flex h-fit flex-col gap-4 rounded-2xl bg-gradient-to-br from-purple-200 to-pink-100 p-6 shadow-xl sm:mx-8 sm:p-8">
+				<h2 className="text-4xl font-bold tracking-tight text-gray-900">Tìm kiếm suất chiếu</h2>
+				<div className="flex flex-col gap-4 rounded-xl bg-gradient-to-br from-purple-100 to-white p-6 shadow-lg transition-all duration-500 ease-in-out">
 					<div className="flex items-center justify-between" onClick={() => setIsOpenFilter((prev) => !prev)}>
-						<div className="flex items-center gap-2 text-2xl font-bold text-gray-900">
-							<FunnelIcon className="h-6 w-6" />
-							Filter
+						<div className="flex items-center gap-3 text-2xl font-bold text-gray-900">
+							<FunnelIcon className="h-7 w-7" />
+							Bộ lọc
 						</div>
 						{!isOpenFilter && (
-							<ChevronDownIcon className="h-6 w-6 transition-all hover:scale-125 hover:cursor-pointer" />
+							<ChevronDownIcon className="h-7 w-7 transition-all hover:scale-125 hover:cursor-pointer" />
 						)}
 						{isOpenFilter && (
-							<ChevronUpIcon className="h-6 w-6 transition-all hover:scale-125 hover:cursor-pointer" />
+							<ChevronUpIcon className="h-7 w-7 transition-all hover:scale-125 hover:cursor-pointer" />
 						)}
 					</div>
 					{isOpenFilter && (
-						<div className="">
+						<div className="space-y-6">
 							<div className="flex flex-col">
-								<h4 className="pt-1 text-lg font-bold text-gray-800">Cinema :</h4>
+								<h4 className="pt-2 text-xl font-bold text-gray-800">Rạp chiếu phim:</h4>
 								<Select
 									value={filterCinema}
 									options={Array.from(
@@ -348,11 +348,11 @@ const Search = () => {
 									isClearable={true}
 									isMultiple={true}
 									isSearchable={true}
-									primaryColor="indigo"
+									primaryColor="purple"
 								/>
 							</div>
 							<div className="flex flex-col">
-								<h4 className="pt-1 text-lg font-bold text-gray-800">Theater :</h4>
+								<h4 className="pt-2 text-xl font-bold text-gray-800">Phòng chiếu:</h4>
 								<Select
 									value={filterTheater}
 									options={Array.from(new Set(showtimes.map((showtime) => showtime.theater.number)))
@@ -368,11 +368,11 @@ const Search = () => {
 									isClearable={true}
 									isMultiple={true}
 									isSearchable={true}
-									primaryColor="indigo"
+									primaryColor="purple"
 								/>
 							</div>
 							<div className="flex flex-col">
-								<h4 className="pt-1 text-lg font-bold text-gray-800">Movie :</h4>
+								<h4 className="pt-2 text-xl font-bold text-gray-800">Phim:</h4>
 								<Select
 									value={filterMovie}
 									options={Array.from(new Set(showtimes.map((showtime) => showtime.movie._id))).map(
@@ -388,11 +388,11 @@ const Search = () => {
 									isClearable={true}
 									isMultiple={true}
 									isSearchable={true}
-									primaryColor="indigo"
+									primaryColor="purple"
 								/>
 							</div>
 							<div className="flex flex-col">
-								<h4 className="pt-1 text-lg font-bold text-gray-800">Date :</h4>
+								<h4 className="pt-2 text-xl font-bold text-gray-800">Ngày:</h4>
 								<Select
 									value={filterDate}
 									options={Array.from(
@@ -416,10 +416,10 @@ const Search = () => {
 									isClearable={true}
 									isMultiple={true}
 									isSearchable={true}
-									primaryColor="indigo"
+									primaryColor="purple"
 								/>
-								<div className="my-2 flex flex-col items-start gap-x-2 gap-y-1 sm:flex-row sm:items-center">
-									<label className="text-md font-semibold text-gray-800">From</label>
+								<div className="my-3 flex flex-col items-start gap-x-3 gap-y-2 sm:flex-row sm:items-center">
+									<label className="text-lg font-semibold text-gray-800">Từ</label>
 									<Select
 										value={filterDateFrom}
 										options={Array.from(
@@ -434,21 +434,19 @@ const Search = () => {
 													return `${day} ${month} ${year}`
 												})
 											)
-										)
-											// .filter((value) => !filterDateTo || new Date(filterDateTo.value) >= new Date(value))
-											.map((value) => ({
-												value,
-												label: value
-											}))}
+										).map((value) => ({
+											value,
+											label: value
+										}))}
 										onChange={(value) => {
 											setFilterDateFrom(value)
 											resetState()
 										}}
 										isClearable={true}
 										isSearchable={true}
-										primaryColor="indigo"
+										primaryColor="purple"
 									/>
-									<label className="text-md font-semibold text-gray-800">To</label>
+									<label className="text-lg font-semibold text-gray-800">Đến</label>
 									<Select
 										value={filterDateTo}
 										options={Array.from(
@@ -463,27 +461,25 @@ const Search = () => {
 													return `${day} ${month} ${year}`
 												})
 											)
-										)
-											// .filter((value) => !filterDateFrom || new Date(filterDateFrom.value) <= new Date(value))
-											.map((value) => ({
-												value,
-												label: value
-											}))}
+										).map((value) => ({
+											value,
+											label: value
+										}))}
 										onChange={(value) => {
 											setFilterDateTo(value)
 											resetState()
 										}}
 										isClearable={true}
 										isSearchable={true}
-										primaryColor="indigo"
+										primaryColor="purple"
 									/>
 								</div>
-								<div className="flex flex-col items-start gap-x-8 gap-y-2 sm:flex-row sm:items-center">
-									<label className="text-md flex items-center justify-between gap-2 font-semibold text-gray-800">
-										Past Date
+								<div className="flex flex-col items-start gap-x-8 gap-y-3 sm:flex-row sm:items-center">
+									<label className="text-lg flex items-center justify-between gap-3 font-semibold text-gray-800">
+										Ngày quá khứ
 										<input
 											type="checkbox"
-											className="h-6 w-6"
+											className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 											checked={filterPastDate}
 											onClick={(event) => {
 												setFilterPastDate(event.target.checked)
@@ -493,11 +489,11 @@ const Search = () => {
 											}}
 										/>
 									</label>
-									<label className="text-md flex items-center justify-between gap-2 font-semibold text-gray-800">
-										Today
+									<label className="text-lg flex items-center justify-between gap-3 font-semibold text-gray-800">
+										Hôm nay
 										<input
 											type="checkbox"
-											className="h-6 w-6"
+											className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 											checked={filterToday}
 											onClick={(event) => {
 												setFilterPastDate(false)
@@ -507,11 +503,11 @@ const Search = () => {
 											}}
 										/>
 									</label>
-									<label className="text-md flex items-center justify-between gap-2 font-semibold text-gray-800">
-										Future Date
+									<label className="text-lg flex items-center justify-between gap-3 font-semibold text-gray-800">
+										Ngày tương lai
 										<input
 											type="checkbox"
-											className="h-6 w-6"
+											className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 											checked={filterFutureDate}
 											onClick={(event) => {
 												setFilterPastDate(false)
@@ -524,7 +520,7 @@ const Search = () => {
 								</div>
 							</div>
 							<div className="flex flex-col">
-								<h4 className="pt-1 text-lg font-bold text-gray-800">Time :</h4>
+								<h4 className="pt-2 text-xl font-bold text-gray-800">Giờ:</h4>
 								<Select
 									value={filterTime}
 									options={Array.from(
@@ -549,10 +545,10 @@ const Search = () => {
 									isClearable={true}
 									isMultiple={true}
 									isSearchable={true}
-									primaryColor="indigo"
+									primaryColor="purple"
 								/>
-								<div className="my-2 flex flex-col items-start gap-x-2 gap-y-1 sm:flex-row sm:items-center">
-									<label className="text-md font-semibold text-gray-800">From</label>
+								<div className="my-3 flex flex-col items-start gap-x-3 gap-y-2 sm:flex-row sm:items-center">
+									<label className="text-lg font-semibold text-gray-800">Từ</label>
 									<Select
 										value={filterTimeFrom}
 										options={Array.from(
@@ -579,9 +575,9 @@ const Search = () => {
 										}}
 										isClearable={true}
 										isSearchable={true}
-										primaryColor="indigo"
+										primaryColor="purple"
 									/>
-									<label className="text-md font-semibold text-gray-800">To</label>
+									<label className="text-lg font-semibold text-gray-800">Đến</label>
 									<Select
 										value={filterTimeTo}
 										options={Array.from(
@@ -608,18 +604,18 @@ const Search = () => {
 										}}
 										isClearable={true}
 										isSearchable={true}
-										primaryColor="indigo"
+										primaryColor="purple"
 									/>
 								</div>
 							</div>
 							<div className="flex flex-col">
-								<h4 className="pt-1 text-lg font-bold text-gray-800">Release :</h4>
-								<div className="mt-1 flex flex-col items-start gap-x-8 gap-y-2 sm:flex-row sm:items-center">
-									<label className="text-md flex items-center justify-between gap-2 font-semibold text-gray-800">
-										True
+								<h4 className="pt-2 text-xl font-bold text-gray-800">Trạng thái:</h4>
+								<div className="mt-2 flex flex-col items-start gap-x-8 gap-y-3 sm:flex-row sm:items-center">
+									<label className="text-lg flex items-center justify-between gap-3 font-semibold text-gray-800">
+										Đã phát hành
 										<input
 											type="checkbox"
-											className="h-6 w-6"
+											className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 											checked={filterReleaseTrue}
 											onClick={(event) => {
 												setFilterReleaseTrue(event.target.checked)
@@ -628,11 +624,11 @@ const Search = () => {
 											}}
 										/>
 									</label>
-									<label className="text-md flex items-center justify-between gap-2 font-semibold text-gray-800">
-										False
+									<label className="text-lg flex items-center justify-between gap-3 font-semibold text-gray-800">
+										Chưa phát hành
 										<input
 											type="checkbox"
-											className="h-6 w-6"
+											className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 											checked={filterReleaseFalse}
 											onClick={(event) => {
 												setFilterReleaseTrue(false)
@@ -648,67 +644,66 @@ const Search = () => {
 				</div>
 				<div className="flex items-end">
 					<ArrowDownIcon className="h-8 min-h-[32px] w-8 min-w-[32px] px-1" />
-					<div className="flex flex-wrap items-center gap-2 px-1">
+					<div className="flex flex-wrap items-center gap-3 px-1">
 						<button
-							className="flex w-fit items-center justify-center gap-1 rounded bg-gradient-to-r from-indigo-600 to-blue-500 py-1 pl-2 pr-1.5 text-sm font-medium text-white hover:from-indigo-500 hover:to-blue-400 disabled:from-slate-500 disabled:to-slate-400 md:min-w-fit"
+							className="flex w-fit items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-2 text-base font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400 md:min-w-fit"
 							onClick={() => handleReleaseCheckedShowtimes()}
 							disabled={checkedShowtimes.length === 0 || isReleasingCheckedShowtimes}
 						>
 							{isReleasingCheckedShowtimes ? (
-								`${releasedCheckedShowtimes} / ${checkedShowtimes.length} showtimes released`
+								`${releasedCheckedShowtimes} / ${checkedShowtimes.length} suất chiếu đã phát hành`
 							) : (
 								<>
 									<EyeIcon className="h-5 w-5" />
-									{`Release ${checkedShowtimes.length} checked showtimes`}
+									{`Phát hành ${checkedShowtimes.length} suất chiếu đã chọn`}
 								</>
 							)}
 						</button>
 						<button
-							className="flex w-fit items-center justify-center gap-1 rounded bg-gradient-to-r from-indigo-600 to-blue-500 py-1 pl-2 pr-1.5 text-sm font-medium text-white hover:from-indigo-500 hover:to-blue-400 disabled:from-slate-500 disabled:to-slate-400 md:min-w-fit"
+							className="flex w-fit items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-purple-600 to-pink-500 px-4 py-2 text-base font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400 md:min-w-fit"
 							onClick={() => handleUnreleasedCheckedShowtimes()}
 							disabled={checkedShowtimes.length === 0 || isUnreleasingCheckedShowtimes}
 						>
 							{isUnreleasingCheckedShowtimes ? (
-								`${unreleasedCheckedShowtimes} / ${checkedShowtimes.length} showtimes unreleased`
+								`${unreleasedCheckedShowtimes} / ${checkedShowtimes.length} suất chiếu đã hủy phát hành`
 							) : (
 								<>
 									<EyeSlashIcon className="h-5 w-5" />
-									{`Unreleased ${checkedShowtimes.length} checked showtimes`}
+									{`Hủy phát hành ${checkedShowtimes.length} suất chiếu đã chọn`}
 								</>
 							)}
 						</button>
 						<button
-							className="flex w-fit items-center justify-center gap-1 rounded bg-gradient-to-r from-red-700 to-rose-600 py-1 pl-2 pr-1.5 text-sm font-medium text-white hover:from-red-600 hover:to-rose-500 disabled:from-slate-500 disabled:to-slate-400 md:min-w-fit"
+							className="flex w-fit items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-red-700 to-rose-600 px-4 py-2 text-base font-medium text-white shadow-lg transition-all hover:scale-105 hover:from-red-600 hover:to-rose-500 active:scale-95 disabled:from-slate-500 disabled:to-slate-400 md:min-w-fit"
 							onClick={() => handleDeleteCheckedShowtimes()}
 							disabled={checkedShowtimes.length === 0 || isDeletingCheckedShowtimes}
 						>
 							{isDeletingCheckedShowtimes ? (
-								`${deletedCheckedShowtimes} / ${checkedShowtimes.length} showtimes deleted`
+								`${deletedCheckedShowtimes} / ${checkedShowtimes.length} suất chiếu đã xóa`
 							) : (
 								<>
 									<TrashIcon className="h-5 w-5" />
-									{`Delete ${checkedShowtimes.length} checked showtimes`}
+									{`Xóa ${checkedShowtimes.length} suất chiếu đã chọn`}
 								</>
 							)}
 						</button>
 					</div>
 
 					{isFetchingShowtimesDone && (
-						<div className="ml-auto flex items-center gap-1 px-1 text-sm font-medium">
-							<InformationCircleIcon className="h-5 w-5" /> Showing {filteredShowtimes.length} filtered
-							showtimes
+						<div className="ml-auto flex items-center gap-2 px-1 text-base font-medium">
+							<InformationCircleIcon className="h-6 w-6" /> Hiển thị {filteredShowtimes.length} suất chiếu đã lọc
 						</div>
 					)}
 				</div>
 
 				<div
-					className={`mb-4 grid max-h-screen overflow-auto rounded-md bg-gradient-to-br from-indigo-100 to-white`}
+					className={`mb-4 grid max-h-screen overflow-auto rounded-xl bg-gradient-to-br from-purple-100 to-white shadow-lg`}
 					style={{ gridTemplateColumns: '34px repeat(7, minmax(max-content, 1fr)) 104px' }}
 				>
-					<p className="sticky top-0 flex items-center justify-center rounded-tl-md bg-gradient-to-br from-gray-800 to-gray-700 text-center text-xl font-semibold text-white">
+					<p className="sticky top-0 flex items-center justify-center rounded-tl-xl bg-gradient-to-br from-gray-800 to-gray-700 text-center text-xl font-semibold text-white">
 						<input
 							type="checkbox"
-							className="h-6 w-6"
+							className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 							checked={isCheckAll}
 							onChange={() => {
 								if (isCheckAll) {
@@ -726,99 +721,99 @@ const Search = () => {
 						/>
 					</p>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortCinema
 							resetSort()
 							setSortCinema(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Cinema</p>
-						{sortCinema === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortCinema === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortCinema === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Rạp chiếu phim</p>
+						{sortCinema === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortCinema === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortCinema === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortTheater
 							resetSort()
 							setSortTheater(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Theater</p>
-						{sortTheater === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortTheater === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortTheater === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Phòng chiếu</p>
+						{sortTheater === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortTheater === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortTheater === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortMovie
 							resetSort()
 							setSortMovie(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Movie</p>
-						{sortMovie === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortMovie === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortMovie === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Phim</p>
+						{sortMovie === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortMovie === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortMovie === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortDate
 							resetSort()
 							setSortDate(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Date</p>
-						{sortDate === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortDate === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortDate === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Ngày</p>
+						{sortDate === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortDate === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortDate === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortTime
 							resetSort()
 							setSortTime(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Time</p>
-						{sortTime === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortTime === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortTime === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Giờ</p>
+						{sortTime === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortTime === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortTime === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortBooked
 							resetSort()
 							setSortBooked(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Booked</p>
-						{sortBooked === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortBooked === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortBooked === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Đã đặt</p>
+						{sortBooked === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortBooked === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortBooked === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
 					<button
-						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 hover:from-gray-700 hover:to-gray-600 px-2 py-1 text-center text-xl font-semibold text-white"
+						className="sticky top-0 flex justify-center bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white transition-all hover:from-gray-700 hover:to-gray-600"
 						onClick={() => {
 							let prevValue = sortRelease
 							resetSort()
 							setSortRelease(prevValue === 0 ? 1 : prevValue === 1 ? -1 : 0)
 						}}
 					>
-						<p className="ml-auto">Release</p>
-						{sortRelease === 0 && <ChevronUpDownIcon className="ml-auto w-6 h-6" />}
-						{sortRelease === 1 && <ChevronUpIcon className="ml-auto w-6 h-6" />}
-						{sortRelease === -1 && <ChevronDownIcon className="ml-auto w-6 h-6" />}
+						<p className="ml-auto">Trạng thái</p>
+						{sortRelease === 0 && <ChevronUpDownIcon className="ml-auto h-6 w-6" />}
+						{sortRelease === 1 && <ChevronUpIcon className="ml-auto h-6 w-6" />}
+						{sortRelease === -1 && <ChevronDownIcon className="ml-auto h-6 w-6" />}
 					</button>
-					<p className="sticky top-0 z-[1] flex items-center justify-center gap-2 rounded-tr-md bg-gradient-to-br from-gray-800 to-gray-700 px-2 py-1 text-center text-xl font-semibold text-white">
+					<p className="sticky top-0 z-[1] flex items-center justify-center gap-2 rounded-tr-xl bg-gradient-to-br from-gray-800 to-gray-700 px-3 py-2 text-center text-xl font-semibold text-white">
 						<MapIcon className="h-6 w-6" />
-						View
+						Xem
 					</p>
 					{isFetchingShowtimesDone &&
 						filteredShowtimes.map((showtime, index) => {
@@ -832,14 +827,14 @@ const Search = () => {
 							return (
 								<Fragment key={index}>
 									<div
-										className={`flex items-center justify-center border-t-2 border-indigo-200 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`flex items-center justify-center border-t-2 border-purple-200 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>
 										<input
 											id={showtime._id}
 											type="checkbox"
-											className="h-6 w-6"
+											className="h-6 w-6 rounded-lg border-2 border-gray-300 shadow-sm transition-all focus:ring-2 focus:ring-purple-500"
 											checked={checkedShowtimes.includes(showtime._id)}
 											onChange={(e) => {
 												const { id, checked } = e.target
@@ -852,46 +847,46 @@ const Search = () => {
 										/>
 									</div>
 									<div
-										className={`border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>
 										{showtime.theater.cinema.name}
 									</div>
 									<div
-										className={`border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>
 										{showtime.theater.number}
 									</div>
 									<div
-										className={`border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>
 										{showtime.movie.name}
 									</div>
 									<div
-										className={`border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>{`${day} ${month} ${year}`}</div>
 									<div
-										className={`border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>{`${hours} : ${minutes}`}</div>
 									<div
-										className={`border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>
 										{showtime.seats.length}
 									</div>
 									<div
-										className={`flex items-center gap-2 border-t-2 border-indigo-200 px-2 py-1 ${
-											isCheckedRow && 'border-white bg-blue-200 text-blue-800'
+										className={`flex items-center gap-2 border-t-2 border-purple-200 px-3 py-2 ${
+											isCheckedRow && 'border-white bg-purple-200 text-purple-800'
 										}`}
 									>
 										<p>
@@ -899,15 +894,15 @@ const Search = () => {
 												String(showtime.isRelease).slice(1)}
 										</p>
 										{!showtime.isRelease && (
-											<EyeSlashIcon className="h-5 w-5" title="Unreleased showtime" />
+											<EyeSlashIcon className="h-5 w-5" title="Suất chiếu chưa phát hành" />
 										)}
 									</div>
 									<button
-										className="flex items-center justify-center gap-2 bg-gradient-to-br from-indigo-600 to-blue-500 px-2 py-1 text-white drop-shadow-md hover:from-indigo-500 hover:to-blue-400 disabled:from-slate-500 disabled:to-slate-400"
+										className="flex items-center justify-center gap-2 bg-gradient-to-r from-purple-600 to-pink-500 px-3 py-2 text-white shadow-lg transition-all hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400"
 										onClick={() => navigate(`/showtime/${showtime._id}`)}
 									>
 										<MapIcon className="h-6 w-6" />
-										View
+										Xem
 									</button>
 								</Fragment>
 							)

@@ -37,27 +37,27 @@ const Tickets = () => {
 	}, [])
 
 	return (
-		<div className="flex min-h-screen flex-col gap-4 bg-gradient-to-br from-indigo-900 to-blue-500 pb-8 text-gray-900 sm:gap-8">
+		<div className="flex min-h-screen flex-col gap-6 bg-gradient-to-br from-purple-900 to-pink-800 pb-12 text-gray-900 sm:gap-10">
 			<Navbar />
-			<div className="mx-4 flex h-fit flex-col gap-4 rounded-md bg-gradient-to-br from-indigo-200 to-blue-100 p-4 drop-shadow-xl sm:mx-8 sm:p-6">
-				<h2 className="text-3xl font-bold text-gray-900">My Tickets</h2>
+			<div className="mx-4 flex h-fit flex-col gap-6 rounded-2xl bg-gradient-to-br from-purple-200 to-pink-100 p-6 shadow-xl sm:mx-8 sm:p-8">
+				<h2 className="text-3xl font-bold tracking-tight text-gray-800">Vé của tôi</h2>
 				{isFetchingticketsDone ? (
 					<>
 						{tickets.length === 0 ? (
-							<p className="text-center">You have not purchased any tickets yet</p>
+							<p className="text-center text-lg text-gray-700">Bạn chưa mua vé nào</p>
 						) : (
-							<div className="grid grid-cols-1 gap-4 xl:grid-cols-2 min-[1920px]:grid-cols-3">
+							<div className="grid grid-cols-1 gap-6 xl:grid-cols-2 min-[1920px]:grid-cols-3">
 								{tickets.map((ticket, index) => {
 									return (
-										<div className="flex flex-col" key={index}>
+										<div className="flex flex-col transition-all duration-300 hover:scale-[1.02]" key={index}>
 											<ShowtimeDetails showtime={ticket.showtime} />
-											<div className="flex h-full flex-col justify-between rounded-b-lg bg-gradient-to-br from-indigo-100 to-white text-center text-lg drop-shadow-lg md:flex-row">
-												<div className="flex h-full flex-col items-center gap-x-4 px-4 py-2 md:flex-row">
-													<p className="whitespace-nowrap font-semibold">Seats : </p>
-													<p className="text-left">
+											<div className="flex h-full flex-col justify-between rounded-b-xl bg-gradient-to-br from-purple-100 to-white text-center text-lg shadow-lg md:flex-row">
+												<div className="flex h-full flex-col items-center gap-x-4 px-6 py-3 md:flex-row">
+													<p className="whitespace-nowrap font-semibold text-gray-800">Ghế: </p>
+													<p className="text-left text-gray-700">
 														{ticket.seats.map((seat) => seat.row + seat.number).join(', ')}
 													</p>
-													<p className="whitespace-nowrap">({ticket.seats.length} seats)</p>
+													<p className="whitespace-nowrap text-gray-600">({ticket.seats.length} ghế)</p>
 												</div>
 											</div>
 										</div>

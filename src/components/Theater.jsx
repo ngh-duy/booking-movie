@@ -39,7 +39,6 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 			} else {
 				response = await axios.get(`/theater/${theaterId}`)
 			}
-			// console.log(response.data.data)
 			setTheater(response.data.data)
 		} catch (error) {
 			console.error(error)
@@ -62,7 +61,7 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 		try {
 			SetIsAddingShowtime(true)
 			if (!data.movie) {
-				toast.error('Please select a movie', {
+				toast.error('Vui lòng chọn phim', {
 					position: 'top-center',
 					autoClose: 2000,
 					pauseOnHover: false
@@ -81,7 +80,6 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 					}
 				}
 			)
-			// console.log(response.data)
 			fetchTheater()
 			if (data.autoIncrease) {
 				const movieLength = movies.find((movie) => movie._id === data.movie).length
@@ -115,14 +113,14 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 					sessionStorage.setItem('selectedDate', nextShowtime)
 				}
 			}
-			toast.success('Add showtime successful!', {
+			toast.success('Thêm suất chiếu thành công!', {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
 			})
 		} catch (error) {
 			console.error(error)
-			toast.error('Error', {
+			toast.error('Lỗi', {
 				position: 'top-center',
 				autoClose: 2000,
 				pauseOnHover: false
@@ -135,7 +133,7 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 	function rowToNumber(column) {
 		let result = 0
 		for (let i = 0; i < column.length; i++) {
-			const charCode = column.charCodeAt(i) - 64 // Convert character to ASCII and adjust to 1-based index
+			const charCode = column.charCodeAt(i) - 64
 			result = result * 26 + charCode
 		}
 		return result
@@ -149,50 +147,50 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 		<div className="flex flex-col">
 			<div className="flex md:justify-between">
 				<h3
-					className={`flex w-fit items-center rounded-tl-2xl bg-gradient-to-br from-gray-800 to-gray-700 px-6 py-0.5 text-2xl font-bold text-white md:rounded-t-2xl md:px-8 ${
+					className={`flex w-fit items-center rounded-tl-2xl bg-gradient-to-br from-gray-800 to-gray-700 px-8 py-2 text-2xl font-bold text-white shadow-lg md:rounded-t-2xl md:px-10 ${
 						auth.role !== 'admin' && 'rounded-t-2xl'
 					}`}
 				>
 					{theater.number}
 				</h3>
 				{auth.role === 'admin' && (
-					<div className="flex w-fit flex-col gap-x-3 rounded-tr-2xl bg-gradient-to-br from-indigo-800 to-blue-700 px-4 py-0.5 font-semibold text-white md:flex-row md:gap-x-6 md:rounded-t-2xl md:text-lg md:font-bold">
+					<div className="flex w-fit flex-col gap-x-3 rounded-tr-2xl bg-gradient-to-br from-purple-800 to-pink-700 px-6 py-2 font-semibold text-white shadow-lg md:flex-row md:gap-x-6 md:rounded-t-2xl md:text-lg md:font-bold">
 						<div className="flex items-center gap-2">
 							<ArrowsUpDownIcon className="h-5 w-5" />
 							{theater?.seatPlan?.row === 'A' ? (
-								<h4>Row : A</h4>
+								<h4>Hàng: A</h4>
 							) : (
-								<h4>Row : A - {theater?.seatPlan?.row}</h4>
+								<h4>Hàng: A - {theater?.seatPlan?.row}</h4>
 							)}
 						</div>
 						<div className="flex items-center gap-2">
 							<ArrowsRightLeftIcon className="h-5 w-5" />
 							{theater?.seatPlan?.column === 1 ? (
-								<h4>Column : 1</h4>
+								<h4>Cột: 1</h4>
 							) : (
-								<h4>Column : 1 - {theater?.seatPlan?.column}</h4>
+								<h4>Cột: 1 - {theater?.seatPlan?.column}</h4>
 							)}
 						</div>
 						<div className="flex items-center gap-2">
 							<UserIcon className="h-5 w-5" />
 							{(rowToNumber(theater.seatPlan.row) * theater.seatPlan.column).toLocaleString('en-US')}{' '}
-							Seats
+							Ghế
 						</div>
 					</div>
 				)}
 			</div>
-			<div className="flex flex-col gap-4 rounded-b-md rounded-tr-md bg-gradient-to-br from-indigo-100 to-white py-4 md:rounded-tr-none">
+			<div className="flex flex-col gap-6 rounded-b-2xl rounded-tr-2xl bg-gradient-to-br from-purple-50 to-white py-6 shadow-xl md:rounded-tr-none">
 				{auth.role === 'admin' && (
 					<>
 						<form
-							className="mx-4 flex flex-col gap-x-4 gap-y-2 lg:flex-row"
+							className="mx-6 flex flex-col gap-x-6 gap-y-4 lg:flex-row"
 							onSubmit={handleSubmit(onAddShowtime)}
 						>
-							<div className="flex grow flex-col gap-2 rounded-lg">
-								<div className="flex flex-col gap-2 rounded-lg lg:flex-row lg:items-stretch">
-									<div className="flex grow-[2] items-center gap-x-2 gap-y-1 lg:flex-col lg:items-start">
-										<label className="whitespace-nowrap text-lg font-semibold leading-5">
-											Movie:
+							<div className="flex grow flex-col gap-4 rounded-xl">
+								<div className="flex flex-col gap-4 rounded-xl lg:flex-row lg:items-stretch">
+									<div className="flex grow-[2] items-center gap-x-3 gap-y-2 lg:flex-col lg:items-start">
+										<label className="whitespace-nowrap text-lg font-semibold leading-5 text-gray-800">
+											Phim:
 										</label>
 										<Select
 											value={selectedMovie}
@@ -205,96 +203,96 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 												setSelectedMovie(value)
 											}}
 											isSearchable={true}
-											primaryColor="indigo"
+											primaryColor="purple"
 											classNames={{
 												menuButton: (value) =>
-													'flex font-semibold text-sm border border-gray-300 rounded shadow-sm transition-all duration-300 focus:outline-none bg-white hover:border-gray-400 focus:border-indigo-500 focus:ring focus:ring-indigo-500/20'
+													'flex w-full font-semibold text-sm border border-gray-300 rounded-lg shadow-md transition-all duration-300 focus:outline-none bg-white hover:border-gray-400 focus:border-purple-500 focus:ring focus:ring-purple-500/20'
 											}}
 										/>
 									</div>
-									<div className="flex items-center gap-x-2 gap-y-1 lg:flex-col lg:items-start">
-										<label className="whitespace-nowrap text-lg font-semibold leading-5">
-											Showtime:
+									<div className="flex items-center gap-x-3 gap-y-2 lg:flex-col lg:items-start">
+										<label className="whitespace-nowrap text-lg font-semibold leading-5 text-gray-800">
+											Giờ chiếu:
 										</label>
 										<input
 											type="time"
-											className="h-9 w-full rounded bg-white px-2 py-1 font-semibold text-gray-900 drop-shadow-sm"
+											className="h-10 w-full rounded-lg bg-white px-3 py-2 font-semibold text-gray-900 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
 											required
 											{...register('showtime', { required: true })}
 										/>
 									</div>
 								</div>
-								<div className="flex flex-col gap-2 rounded-lg lg:flex-row lg:items-stretch">
-									<div className="flex items-center gap-x-2 gap-y-1 lg:flex-col lg:items-start">
-										<label className="whitespace-nowrap text-lg font-semibold leading-5">
-											Repeat (Day):
+								<div className="flex flex-col gap-4 rounded-xl lg:flex-row lg:items-stretch">
+									<div className="flex items-center gap-x-3 gap-y-2 lg:flex-col lg:items-start">
+										<label className="whitespace-nowrap text-lg font-semibold leading-5 text-gray-800">
+											Lặp lại (Ngày):
 										</label>
 										<input
 											type="number"
 											min={1}
 											defaultValue={1}
 											max={31}
-											className="h-9 w-full rounded bg-white px-2 py-1 font-semibold text-gray-900 drop-shadow-sm"
+											className="h-10 w-full rounded-lg bg-white px-3 py-2 font-semibold text-gray-900 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20"
 											required
 											{...register('repeat', { required: true })}
 										/>
 									</div>
-									<label className="flex items-center gap-x-2 gap-y-1 whitespace-nowrap text-lg font-semibold leading-5 lg:flex-col lg:items-start">
-										Release now:
+									<label className="flex items-center gap-x-3 gap-y-2 whitespace-nowrap text-lg font-semibold leading-5 text-gray-800 lg:flex-col lg:items-start">
+										Phát hành ngay:
 										<input
 											type="checkbox"
-											className="h-6 w-6 lg:h-9 lg:w-9"
+											className="h-6 w-6 rounded-lg border-gray-300 text-purple-600 shadow-sm transition-all duration-300 focus:ring-purple-500/20 lg:h-8 lg:w-8"
 											{...register('isRelease')}
 										/>
 									</label>
-									<div className="flex flex-col items-start gap-2 lg:flex-row lg:items-end">
-										<p className="font-semibold text-right underline">Auto increase</p>
+									<div className="flex flex-col items-start gap-3 lg:flex-row lg:items-end">
+										<p className="font-semibold text-right text-gray-800 underline">Tự động tăng</p>
 										<label
-											className="flex items-center gap-x-2 gap-y-1 whitespace-nowrap font-semibold leading-5 lg:flex-col lg:items-start"
-											title="After add, update showtime value to the movie ending time"
+											className="flex items-center gap-x-3 gap-y-2 whitespace-nowrap font-semibold leading-5 text-gray-800 lg:flex-col lg:items-start"
+											title="Sau khi thêm, cập nhật giờ chiếu thành thời gian kết thúc phim"
 										>
-											Showtime:
+											Giờ chiếu:
 											<input
 												type="checkbox"
-												className="h-6 w-6 lg:h-9 lg:w-9"
+												className="h-6 w-6 rounded-lg border-gray-300 text-purple-600 shadow-sm transition-all duration-300 focus:ring-purple-500/20 lg:h-8 lg:w-8"
 												{...register('autoIncrease')}
 											/>
 										</label>
 										<label
-											className="flex items-center gap-x-2 gap-y-1 whitespace-nowrap font-semibold leading-5 lg:flex-col lg:items-start"
-											title="After add, update date value to the movie ending time"
+											className="flex items-center gap-x-3 gap-y-2 whitespace-nowrap font-semibold leading-5 text-gray-800 lg:flex-col lg:items-start"
+											title="Sau khi thêm, cập nhật ngày thành thời gian kết thúc phim"
 										>
-											Date:
+											Ngày:
 											<input
 												type="checkbox"
-												className="h-6 w-6 lg:h-9 lg:w-9"
+												className="h-6 w-6 rounded-lg border-gray-300 text-purple-600 shadow-sm transition-all duration-300 focus:ring-purple-500/20 lg:h-8 lg:w-8"
 												disabled={!watch('autoIncrease')}
 												{...register('autoIncreaseDate')}
 											/>
 										</label>
 									</div>
 									<div
-										className="flex items-center gap-x-2 gap-y-1 lg:flex-col lg:items-start"
-										title="Gap between showtimes"
+										className="flex items-center gap-x-3 gap-y-2 lg:flex-col lg:items-start"
+										title="Khoảng cách giữa các suất chiếu"
 									>
-										<label className="whitespace-nowrap font-semibold leading-5">Gap:</label>
+										<label className="whitespace-nowrap font-semibold leading-5 text-gray-800">Khoảng cách:</label>
 										<input
 											type="time"
-											className="h-9 w-full rounded bg-white px-2 py-1 font-semibold text-gray-900 drop-shadow-sm disabled:bg-gray-300"
+											className="h-10 w-full rounded-lg bg-white px-3 py-2 font-semibold text-gray-900 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500/20 disabled:bg-gray-200"
 											disabled={!watch('autoIncrease')}
 											{...register('gap')}
 										/>
 									</div>
-									<div className="flex flex-col items-start gap-2 lg:flex-row lg:items-end">
-										<p className="font-semibold text-right underline">Rounding</p>
+									<div className="flex flex-col items-start gap-3 lg:flex-row lg:items-end">
+										<p className="font-semibold text-right text-gray-800 underline">Làm tròn</p>
 										<label
-											className="flex items-center gap-x-2 gap-y-1 whitespace-nowrap font-semibold leading-5 lg:flex-col lg:items-start"
-											title="Rounding up to the nearest five minutes"
+											className="flex items-center gap-x-3 gap-y-2 whitespace-nowrap font-semibold leading-5 text-gray-800 lg:flex-col lg:items-start"
+											title="Làm tròn đến 5 phút gần nhất"
 										>
-											5-min:
+											5 phút:
 											<input
 												type="checkbox"
-												className="h-6 w-6 lg:h-9 lg:w-9"
+												className="h-6 w-6 rounded-lg border-gray-300 text-purple-600 shadow-sm transition-all duration-300 focus:ring-purple-500/20 lg:h-8 lg:w-8"
 												disabled={!watch('autoIncrease')}
 												{...register('rounding5', {
 													onChange: () => setValue('rounding10', false)
@@ -302,13 +300,13 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 											/>
 										</label>
 										<label
-											className="flex items-center gap-x-2 gap-y-1 whitespace-nowrap font-semibold leading-5 lg:flex-col lg:items-start"
-											title="Rounding up to the nearest ten minutes"
+											className="flex items-center gap-x-3 gap-y-2 whitespace-nowrap font-semibold leading-5 text-gray-800 lg:flex-col lg:items-start"
+											title="Làm tròn đến 10 phút gần nhất"
 										>
-											10-min:
+											10 phút:
 											<input
 												type="checkbox"
-												className="h-6 w-6 lg:h-9 lg:w-9"
+												className="h-6 w-6 rounded-lg border-gray-300 text-purple-600 shadow-sm transition-all duration-300 focus:ring-purple-500/20 lg:h-8 lg:w-8"
 												disabled={!watch('autoIncrease')}
 												{...register('rounding10', {
 													onChange: () => setValue('rounding5', false)
@@ -319,18 +317,18 @@ const Theater = ({ theaterId, movies, selectedDate, filterMovie, setSelectedDate
 								</div>
 							</div>
 							<button
-								title="Add showtime"
+								title="Thêm suất chiếu"
 								disabled={isAddingShowtime}
-								className="whitespace-nowrap rounded-md bg-gradient-to-r from-indigo-600 to-blue-500 px-2 py-1 font-medium text-white drop-shadow-md hover:from-indigo-500 hover:to-blue-400 disabled:from-slate-500 disabled:to-slate-400"
+								className="transform whitespace-nowrap rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 disabled:from-slate-500 disabled:to-slate-400"
 								type="submit"
 							>
-								ADD +
+								THÊM +
 							</button>
 						</form>
 						{filterMovie?.name && (
-							<div className="mx-4 flex gap-2 rounded-md bg-gradient-to-r from-indigo-600 to-blue-500 p-2 text-white">
+							<div className="mx-6 flex gap-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-500 p-4 text-white shadow-lg">
 								<InformationCircleIcon className="h-6 w-6" />
-								{`You are viewing the showtimes of "${filterMovie?.name}"`}
+								{`Bạn đang xem suất chiếu của "${filterMovie?.name}"`}
 							</div>
 						)}
 					</>

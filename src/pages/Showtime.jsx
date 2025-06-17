@@ -94,18 +94,18 @@ const Showtime = () => {
 	})
 
 	return (
-		<div className="flex min-h-screen flex-col gap-4 bg-gradient-to-br from-indigo-900 to-blue-500 pb-8 sm:gap-8">
+		<div className="flex min-h-screen flex-col gap-6 bg-gradient-to-br from-purple-900 to-pink-800 pb-12 sm:gap-10">
 			<Navbar />
-			<div className="mx-4 h-fit rounded-lg bg-gradient-to-br from-indigo-200 to-blue-100 p-4 drop-shadow-xl sm:mx-8 sm:p-6">
+			<div className="mx-4 h-fit rounded-2xl bg-gradient-to-br from-purple-200 to-pink-100 p-6 shadow-xl sm:mx-8 sm:p-8">
 				{showtime.showtime ? (
 					<>
 						<ShowtimeDetails showtime={showtime} showDeleteBtn={true} fetchShowtime={fetchShowtime} />
-						<div className="flex flex-col justify-between rounded-b-lg bg-gradient-to-br from-indigo-100 to-white text-center text-lg drop-shadow-lg md:flex-row">
-							<div className="flex flex-col items-center gap-x-4 px-4 py-2 md:flex-row">
-								{!isPast && <p className="font-semibold">Selected Seats : </p>}
-								<p className="text-start">{sortedSelectedSeat.join(', ')}</p>
+						<div className="flex flex-col justify-between rounded-b-xl bg-gradient-to-br from-purple-100 to-white text-center text-lg shadow-lg md:flex-row">
+							<div className="flex flex-col items-center gap-x-4 px-6 py-3 md:flex-row">
+								{!isPast && <p className="font-semibold text-gray-800">Ghế đã chọn: </p>}
+								<p className="text-start text-gray-700">{sortedSelectedSeat.join(', ')}</p>
 								{!!selectedSeats.length && (
-									<p className="whitespace-nowrap">({selectedSeats.length} seats)</p>
+									<p className="whitespace-nowrap text-gray-600">({selectedSeats.length} ghế)</p>
 								)}
 							</div>
 							{!!selectedSeats.length && (
@@ -115,31 +115,31 @@ const Showtime = () => {
 										selectedSeats: sortedSelectedSeat,
 										showtime
 									}}
-									className="flex items-center justify-center gap-2 rounded-b-lg bg-gradient-to-br from-indigo-600 to-blue-500 px-4 py-1 font-semibold text-white hover:from-indigo-500 hover:to-blue-500 md:rounded-none md:rounded-br-lg"
+									className="flex items-center justify-center gap-2 rounded-b-xl bg-gradient-to-br from-purple-600 to-pink-500 px-6 py-2 font-semibold text-white shadow-lg transition-all duration-300 hover:scale-105 hover:from-purple-500 hover:to-pink-400 active:scale-95 md:rounded-none md:rounded-br-xl"
 								>
-									<p>Purchase</p>
-									<TicketIcon className="h-7 w-7 text-white" />
+									<p>Mua vé</p>
+									<TicketIcon className="h-7 w-7 text-white transition-transform duration-300 group-hover:scale-110" />
 								</Link>
 							)}
 						</div>
 
-						<div className="mx-auto mt-4 flex flex-col items-center rounded-lg bg-gradient-to-br from-indigo-100 to-white p-4 text-center drop-shadow-lg">
-							<div className="w-full rounded-lg bg-white">
-								<div className="bg-gradient-to-r from-indigo-800 to-blue-700 bg-clip-text text-xl font-bold text-transparent">
-									Screen
+						<div className="mx-auto mt-6 flex flex-col items-center rounded-xl bg-gradient-to-br from-purple-100 to-white p-6 text-center shadow-lg">
+							<div className="w-full rounded-xl bg-white p-4">
+								<div className="bg-gradient-to-r from-purple-800 to-pink-700 bg-clip-text text-2xl font-bold text-transparent">
+									Màn hình
 								</div>
 							</div>
 							<div className="flex w-full flex-col overflow-x-auto overflow-y-hidden">
-								<div className="m-auto my-2">
+								<div className="m-auto my-4">
 									<div className="flex flex-col">
 										<div className="flex items-center">
-											<div className="flex h-8 w-8 items-center">
-												<p className="w-8"></p>
+											<div className="flex h-10 w-10 items-center">
+												<p className="w-10"></p>
 											</div>
 											{colNumber.map((col, index) => {
 												return (
-													<div key={index} className="flex h-8 w-8 items-center">
-														<p className="w-8 font-semibold">{col}</p>
+													<div key={index} className="flex h-10 w-10 items-center">
+														<p className="w-10 font-semibold text-gray-700">{col}</p>
 													</div>
 												)
 											})}
@@ -147,8 +147,8 @@ const Showtime = () => {
 										{rowLetters.reverse().map((rowLetter, index) => {
 											return (
 												<div key={index} className="flex">
-													<div className="flex h-8 w-8 items-center">
-														<p className="w-8 text-xl font-semibold">{rowLetter}</p>
+													<div className="flex h-10 w-10 items-center">
+														<p className="w-10 text-xl font-semibold text-gray-700">{rowLetter}</p>
 													</div>
 													{colNumber.map((col, index) => {
 														return (
@@ -167,8 +167,8 @@ const Showtime = () => {
 															/>
 														)
 													})}
-													<div className="flex h-8 w-8 items-center">
-														<p className="w-8 text-xl font-semibold">{rowLetter}</p>
+													<div className="flex h-10 w-10 items-center">
+														<p className="w-10 text-xl font-semibold text-gray-700">{rowLetter}</p>
 													</div>
 												</div>
 											)
@@ -179,10 +179,10 @@ const Showtime = () => {
 						</div>
 						{auth.role === 'admin' && (
 							<>
-								<h2 className="mt-4 text-2xl font-bold">Booked Seats</h2>
-								<div className="mt-2 flex gap-2 rounded-md bg-gradient-to-br from-indigo-100 to-white p-4">
+								<h2 className="mt-6 text-2xl font-bold tracking-tight text-gray-800">Ghế đã đặt</h2>
+								<div className="mt-4 flex gap-4 rounded-xl bg-gradient-to-br from-purple-100 to-white p-6 shadow-lg">
 									<div className="flex grow flex-col">
-										<h4 className="text-lg font-bold text-gray-800">Row</h4>
+										<h4 className="text-lg font-bold text-gray-800">Hàng</h4>
 										<Select
 											value={filterRow}
 											options={Array.from(new Set(showtime?.seats.map((seat) => seat.row)))
@@ -210,11 +210,11 @@ const Showtime = () => {
 											isClearable={true}
 											isMultiple={true}
 											isSearchable={true}
-											primaryColor="indigo"
+											primaryColor="purple"
 										/>
 									</div>
 									<div className="flex grow flex-col">
-										<h4 className="text-lg font-bold text-gray-800">Number</h4>
+										<h4 className="text-lg font-bold text-gray-800">Số</h4>
 										<Select
 											value={filterColumn}
 											options={Array.from(new Set(showtime?.seats.map((seat) => seat.number)))
@@ -231,27 +231,27 @@ const Showtime = () => {
 											isClearable={true}
 											isMultiple={true}
 											isSearchable={true}
-											primaryColor="indigo"
+											primaryColor="purple"
 										/>
 									</div>
 								</div>
 								<div
-									className={`mt-4 grid max-h-screen w-full overflow-auto rounded-md bg-gradient-to-br from-indigo-100 to-white`}
+									className={`mt-6 grid max-h-screen w-full overflow-auto rounded-xl bg-gradient-to-br from-purple-100 to-white shadow-lg`}
 									style={{
 										gridTemplateColumns: 'repeat(4, minmax(max-content, 1fr))'
 									}}
 								>
-									<p className="sticky top-0 bg-gradient-to-br from-gray-800 to-gray-700 px-2 py-1 text-center text-xl font-semibold text-white">
-										Seat
+									<p className="sticky top-0 bg-gradient-to-br from-purple-800 to-pink-700 px-4 py-2 text-center text-xl font-semibold text-white">
+										Ghế
 									</p>
-									<p className="sticky top-0 bg-gradient-to-br from-gray-800 to-gray-700 px-2 py-1 text-center text-xl font-semibold text-white">
-										Username
+									<p className="sticky top-0 bg-gradient-to-br from-purple-800 to-pink-700 px-4 py-2 text-center text-xl font-semibold text-white">
+										Tên đăng nhập
 									</p>
-									<p className="sticky top-0 bg-gradient-to-br from-gray-800 to-gray-700 px-2 py-1 text-center text-xl font-semibold text-white">
+									<p className="sticky top-0 bg-gradient-to-br from-purple-800 to-pink-700 px-4 py-2 text-center text-xl font-semibold text-white">
 										Email
 									</p>
-									<p className="sticky top-0 bg-gradient-to-br from-gray-800 to-gray-700 px-2 py-1 text-center text-xl font-semibold text-white">
-										Role
+									<p className="sticky top-0 bg-gradient-to-br from-purple-800 to-pink-700 px-4 py-2 text-center text-xl font-semibold text-white">
+										Vai trò
 									</p>
 									{filteredSeats
 										.sort((a, b) => {
@@ -277,16 +277,16 @@ const Showtime = () => {
 										.map((seat, index) => {
 											return (
 												<Fragment key={index}>
-													<div className="border-t-2 border-indigo-200 px-2 py-1">
+													<div className="border-t-2 border-purple-200 px-4 py-2 text-gray-700">
 														{`${seat.row}${seat.number}`}
 													</div>
-													<div className="border-t-2 border-indigo-200 px-2 py-1">
+													<div className="border-t-2 border-purple-200 px-4 py-2 text-gray-700">
 														{seat.user.username}
 													</div>
-													<div className="border-t-2 border-indigo-200 px-2 py-1">
+													<div className="border-t-2 border-purple-200 px-4 py-2 text-gray-700">
 														{seat.user.email}
 													</div>
-													<div className="border-t-2 border-indigo-200 px-2 py-1">
+													<div className="border-t-2 border-purple-200 px-4 py-2 text-gray-700">
 														{seat.user.role}
 													</div>
 												</Fragment>

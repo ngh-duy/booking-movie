@@ -51,48 +51,50 @@ const TheaterShort = ({ theaterId, movies, selectedDate, filterMovie, rounded = 
 
 	return (
 		<div
-			className={`flex flex-col bg-gradient-to-br from-indigo-100 to-white sm:flex-row sm:rounded-tr-none ${
-				rounded && 'rounded-b-md'
+			className={`flex flex-col bg-gradient-to-br from-purple-100 to-white shadow-md transition-all duration-300 hover:shadow-lg sm:flex-row sm:rounded-tr-none ${
+				rounded && 'rounded-b-xl'
 			}`}
 		>
 			<div className="flex flex-col sm:flex-row">
 				<div
-					className={`flex min-w-[120px] flex-row items-center justify-center gap-x-2 bg-gradient-to-br from-gray-800 to-gray-700 px-4 py-0.5 text-2xl font-bold text-white sm:flex-col ${
-						rounded && 'sm:rounded-bl-md'
+					className={`flex min-w-[140px] flex-row items-center justify-center gap-x-3 bg-gradient-to-br from-purple-900 to-pink-800 px-6 py-2 text-2xl font-bold text-white shadow-md sm:flex-col ${
+						rounded && 'sm:rounded-bl-xl'
 					}`}
 				>
-					<p className="text-sm">Theater</p>
-					<p className="text-3xl leading-8">{theater.number}</p>
+					<p className="text-sm tracking-wide">Rạp chiếu</p>
+					<p className="text-3xl leading-8 tracking-tight">{theater.number}</p>
 				</div>
 				{auth.role === 'admin' && (
 					<div
-						className={`flex w-full min-w-[160px] flex-row justify-center gap-x-4 border-b-2 border-indigo-200 bg-gradient-to-br from-indigo-100 to-white px-4 py-0.5 text-sm font-bold sm:w-fit sm:flex-col sm:border-none`}
+						className={`flex w-full min-w-[180px] flex-row justify-center gap-x-6 border-b-2 border-purple-200 bg-gradient-to-br from-purple-100 to-white px-6 py-2 text-sm font-bold sm:w-fit sm:flex-col sm:border-none`}
 					>
-						<div className="flex items-center gap-2">
-							<ArrowsUpDownIcon className="h-5 w-5" />
+						<div className="flex items-center gap-3">
+							<ArrowsUpDownIcon className="h-6 w-6 text-purple-600" />
 							{theater?.seatPlan?.row === 'A' ? (
-								<h4>Row : A</h4>
+								<h4 className="text-gray-800">Hàng : A</h4>
 							) : (
-								<h4>Row : A - {theater?.seatPlan?.row}</h4>
+								<h4 className="text-gray-800">Hàng : A - {theater?.seatPlan?.row}</h4>
 							)}
 						</div>
-						<div className="flex items-center gap-2">
-							<ArrowsRightLeftIcon className="h-5 w-5" />
+						<div className="flex items-center gap-3">
+							<ArrowsRightLeftIcon className="h-6 w-6 text-purple-600" />
 							{theater?.seatPlan?.column === 1 ? (
-								<h4>Column : 1</h4>
+								<h4 className="text-gray-800">Cột : 1</h4>
 							) : (
-								<h4>Column : 1 - {theater?.seatPlan?.column}</h4>
+								<h4 className="text-gray-800">Cột : 1 - {theater?.seatPlan?.column}</h4>
 							)}
 						</div>
-						<div className="flex items-center gap-2">
-							<UserIcon className="h-5 w-5" />
-							{(rowToNumber(theater.seatPlan.row) * theater.seatPlan.column).toLocaleString('en-US')}{' '}
-							Seats
+						<div className="flex items-center gap-3">
+							<UserIcon className="h-6 w-6 text-purple-600" />
+							<h4 className="text-gray-800">
+								{(rowToNumber(theater.seatPlan.row) * theater.seatPlan.column).toLocaleString('en-US')}{' '}
+								Ghế
+							</h4>
 						</div>
 					</div>
 				)}
 			</div>
-			<div className="mx-4 flex items-center">
+			<div className="mx-6 flex items-center">
 				<Showtimes
 					showtimes={theater.showtimes}
 					movies={movies}
