@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && npm run copy-redirects",
+    "preview": "vite preview",
+    "copy-redirects": "cpx \"public/_redirects\" dist/"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
@@ -26,6 +27,7 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "autoprefixer": "^10.4.14",
+    "cpx": "^1.5.0",
     "postcss": "^8.4.27",
     "prettier": "^3.0.1",
     "prettier-plugin-tailwindcss": "^0.4.1",
