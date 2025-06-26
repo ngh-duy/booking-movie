@@ -62,4 +62,11 @@ Kết Quả
   ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/themFilmMoi.png)
 
 HƯỚNG DẪN CÀI ĐẶT DỰ ÁN:
-B1: Clone git bằng câu lệnh 
+*** BE
+B1: Clone project bằng câu lệnh git clone --branch BE --single-branch https://github.com/ngh-duy/booking-movie.git (Git bash)
+B2: Mở project bằng visual và chạy terminal lệnh npm i để tải thư viện cần thiết về.
+B3: Chạy project bằng lệnh npm run dev.
+*** FE
+B1:Clone project bằng câu lệnh git clone --branch FE --single-branch https://github.com/ngh-duy/booking-movie.git (Git bash)
+B2: Mở project bằng visual và chạy terminal lệnh npm i để tải thư viện cần thiết về.
+B3: Chạy project bằng lệnh npm start nên run project.
