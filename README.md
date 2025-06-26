@@ -45,5 +45,5 @@ B7: chọn deploy Web service
 
 Kết Quả 
 - Giao diện trang đăng nhập :
-  ![Logo](public/dangnhap.png")
+  ![Logo](./public/dangnhap.png")
 
