@@ -45,5 +45,5 @@ B7: chọn deploy Web service
 
 Kết Quả 
 - Giao diện trang đăng nhập :
-  ![Logo]("public/dangnhap.png")
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/dangnhap.png)
 
