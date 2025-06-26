@@ -42,3 +42,8 @@ B4: Branch -> Nhánh cần deploy
 B5: Build Command -> npm run build
 B6: Start Command -> npm run dev
 B7: chọn deploy Web service
+
+Kết Quả 
+- Giao diện trang đăng nhập :
+  ![Logo](public/dangnhap.png")
+
