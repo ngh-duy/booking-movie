@@ -43,12 +43,20 @@ const Tickets = () => {
 				<h2 className="text-3xl font-bold tracking-tight text-gray-800">Vé của tôi</h2>
 				{isFetchingticketsDone ? (
 					<>
-						{tickets.length === 0 ? (
-							<p className="text-center text-lg text-gray-700">Bạn chưa mua vé nào</p>
-						) : (
-							<div className="grid grid-cols-1 gap-6 xl:grid-cols-2 min-[1920px]:grid-cols-3">
-								{tickets.map((ticket, index) => {
-									return (
+						{(() => {
+							const now = new Date();
+							let futureTickets = tickets.filter(ticket => {
+								const showtime = ticket.showtime?.showtime;
+								if (!showtime) return false;
+								return new Date(showtime) > now;
+							});
+							futureTickets = futureTickets.sort((a, b) => new Date(a.showtime.showtime) - new Date(b.showtime.showtime));
+							if (futureTickets.length === 0) {
+								return <p className="text-center text-lg text-gray-700">Bạn chưa có vé nào cho các suất phim sắp chiếu</p>;
+							}
+							return (
+								<div className="grid grid-cols-1 gap-6 xl:grid-cols-2 min-[1920px]:grid-cols-3">
+									{futureTickets.map((ticket, index) => (
 										<div className="flex flex-col transition-all duration-300 hover:scale-[1.02]" key={index}>
 											<ShowtimeDetails showtime={ticket.showtime} />
 											<div className="flex h-full flex-col justify-between rounded-b-xl bg-gradient-to-br from-purple-100 to-white text-center text-lg shadow-lg md:flex-row">
@@ -61,10 +69,10 @@ const Tickets = () => {
 												</div>
 											</div>
 										</div>
-									)
-								})}
-							</div>
-						)}
+									))}
+								</div>
+							);
+						})()}
 					</>
 				) : (
 					<Loading />

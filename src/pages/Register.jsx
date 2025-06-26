@@ -55,20 +55,36 @@ const Register = () => {
 						name="username"
 						type="text"
 						autoComplete="username"
-						{...register('username', { required: true })}
+						{...register('username', { 
+							required: 'Vui lòng nhập tên đăng nhập',
+							minLength: {
+								value: 6,
+								message: 'Tên đăng nhập phải có ít nhất 6 ký tự'
+							},
+							pattern: {
+								value: /^[a-zA-Z0-9]+$/,
+								message: 'Tên đăng nhập không được chứa ký tự đặc biệt'
+							}
+						})}
 						className={inputClasses`${errors.username ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
 						placeholder="Tên đăng nhập"
 					/>
-					{errors.username && <span className="text-sm font-medium text-red-500">Vui lòng nhập tên đăng nhập</span>}
+					{errors.username && <span className="text-sm font-medium text-red-500">{errors.username?.message}</span>}
 					<input
 						name="email"
 						type="email"
 						autoComplete="email"
-						{...register('email', { required: true })}
+						{...register('email', { 
+							required: 'Vui lòng nhập email',
+							pattern: {
+								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+								message: 'Email không đúng định dạng'
+							}
+						})}
 						className={inputClasses`${errors.email ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}`}
 						placeholder="Email"
 					/>
-					{errors.email && <span className="text-sm font-medium text-red-500">Vui lòng nhập email</span>}
+					{errors.email && <span className="text-sm font-medium text-red-500">{errors.email?.message}</span>}
 					<input
 						name="password"
 						type="password"

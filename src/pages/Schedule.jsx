@@ -93,6 +93,30 @@ const Schedule = () => {
 			let showtime = new Date(selectedDate)
 			const [hours, minutes] = data.showtime.split(':')
 			showtime.setHours(hours, minutes, 0)
+			const selectedTheater = cinemas[selectedCinemaIndex]?.theaters?.find(t => t._id === data.theater);
+			if (selectedTheater) {
+				const showtimesInDay = selectedTheater.showtimes?.filter(st => {
+					const stDate = new Date(st.showtime);
+					return stDate.getDate() === selectedDate.getDate() &&
+						stDate.getMonth() === selectedDate.getMonth() &&
+						stDate.getFullYear() === selectedDate.getFullYear();
+				}) || [];
+				showtimesInDay.sort((a, b) => new Date(a.showtime) - new Date(b.showtime));
+				for (let i = 0; i < showtimesInDay.length; i++) {
+					const prevShow = showtimesInDay[i];
+					const prevShowTime = new Date(prevShow.showtime);
+					const prevShowEnd = new Date(prevShowTime.getTime() + (prevShow.movie.length || 120) * 60000);
+					if (showtime.getTime() >= prevShowTime.getTime() && showtime.getTime() < prevShowEnd.getTime()) {
+						toast.error(`Giờ chiếu bị trùng hoặc nằm trong khoảng chiếu của phim "${prevShow.movie.name}"!`, {
+							position: 'top-center',
+							autoClose: 3000,
+							pauseOnHover: false
+						});
+						SetIsAddingShowtime(false);
+						return;
+					}
+				}
+			}
 			const response = await axios.post(
 				'/showtime',
 				{ movie: data.movie, showtime, theater: data.theater, repeat: data.repeat, isRelease: data.isRelease },
