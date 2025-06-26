@@ -46,4 +46,17 @@ B7: chọn deploy Web service
 Kết Quả 
 - Giao diện trang đăng nhập :
   ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/dangnhap.png)
-
+- Giao diện đăng ký:
+ ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/dangky.png)
+- Giao diện các vé đã đặt:
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/GiaoDienCacVeDaDat.png)
+- Giao diện đặt vé:
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/GiaoDienDatVe.png)
+- Giao diện quản lý người dùng:
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/GiaoDienQuanLyNguoiDUng.png)
+- Giao diện tìm xuất chiếu:
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/GiaDientimXuatChieu.png)
+- Giao diện tạo rạp film:
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/giaodienTaoRapPhim.png)
+- Giao diện thêm film mới:
+  ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/themFilmMoi.png)
