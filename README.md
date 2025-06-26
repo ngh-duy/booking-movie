@@ -60,3 +60,6 @@ Kết Quả
   ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/giaodienTaoRapPhim.png)
 - Giao diện thêm film mới:
   ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/themFilmMoi.png)
+
+HƯỚNG DẪN CÀI ĐẶT DỰ ÁN:
+B1: Clone git bằng câu lệnh 
