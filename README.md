@@ -2,7 +2,17 @@
 Chia 2 nhánh FE và BE
 Tài khoản Admin:
 Username: admin
-password: admin123
+password: admin123 <br/>
+///////////////<br/>
+HƯỚNG DẪN CÀI ĐẶT DỰ ÁN: <br>
+*** BE <br>
+B1: Clone project bằng câu lệnh git clone --branch BE --single-branch https://github.com/ngh-duy/booking-movie.git (Git bash) <br>
+B2: Mở project bằng visual và chạy terminal lệnh npm i để tải thư viện cần thiết về. <br>
+B3: Chạy project bằng lệnh npm run dev. <br>
+*** FE <br>
+B1:Clone project bằng câu lệnh git clone --branch FE --single-branch https://github.com/ngh-duy/booking-movie.git (Git bash) <br>
+B2: Mở project bằng visual và chạy terminal lệnh npm i để tải thư viện cần thiết về. <br>
+B3: Chạy project bằng lệnh npm start nên run project. <br>
 ////////////////
 # Booking Movie - Giới thiệu Đồ Án
 
@@ -61,12 +71,4 @@ Kết Quả
 - Giao diện thêm film mới:
   ![Logo](https://github.com/ngh-duy/booking-movie/blob/master/public/themFilmMoi.png)
 
-HƯỚNG DẪN CÀI ĐẶT DỰ ÁN: <br>
-*** BE <br>
-B1: Clone project bằng câu lệnh git clone --branch BE --single-branch https://github.com/ngh-duy/booking-movie.git (Git bash) <br>
-B2: Mở project bằng visual và chạy terminal lệnh npm i để tải thư viện cần thiết về. <br>
-B3: Chạy project bằng lệnh npm run dev. <br>
-*** FE <br>
-B1:Clone project bằng câu lệnh git clone --branch FE --single-branch https://github.com/ngh-duy/booking-movie.git (Git bash) <br>
-B2: Mở project bằng visual và chạy terminal lệnh npm i để tải thư viện cần thiết về. <br>
-B3: Chạy project bằng lệnh npm start nên run project. <br>
+
